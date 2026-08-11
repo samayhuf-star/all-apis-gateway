@@ -9,11 +9,11 @@ Your 17 APIs are already AI-agent discoverable via `.well-known/ai-plugin.json` 
 3. Under **Actions**, click **Add action**
 4. Import from URL:
    ```
-   http://167.71.22.95/openapi.json
+   https://momentumbysamay.online/api/website-intel/openapi.json
    ```
 5. Set **Authentication**: `API Key` → Header name: `X-API-Key`
 6. Paste in the admin key from your deployment's admin endpoint (see README / env.example)
-7. Set **Privacy Policy URL**: `http://167.71.22.95/privacy` (or your own)
+7. Set **Privacy Policy URL**: `https://momentumbysamay.online/api/website-intel/privacy` (or your own)
 8. Save GPT
 
 ## Step 2 — Create a GPT Action for Marketing Bundle
@@ -21,7 +21,7 @@ Your 17 APIs are already AI-agent discoverable via `.well-known/ai-plugin.json` 
 1. Create another GPT from the GPT editor
 2. Import OpenAPI from:
    ```
-   http://64.227.2.61/marketing/openapi.json
+   https://momentumbysamay.online/api/marketing/openapi.json
    ```
 3. **Authentication**: `API Key` → `X-API-Key`
 4. Use the marketing bundle admin key from your deployment (env.example)
@@ -39,7 +39,7 @@ Both droplets already serve **AI agent discovery manifests**:
 
 | Droplet | Manifest URL |
 |---------|-------------|
-| Website Intel | `http://167.71.22.95/.well-known/ai-plugin.json` |
-| Marketing Bundle | `http://64.227.2.61/marketing/.well-known/ai-plugin.json` |
+| Website Intel | `https://momentumbysamay.online/api/website-intel/.well-known/ai-plugin.json` |
+| Marketing Bundle | `https://momentumbysamay.online/api/marketing/.well-known/ai-plugin.json` |
 
 These are auto-discovered by OpenAI GPT Actions, Claude Code, and any MCP-aware agent. Simply point the agent to the `.well-known/ai-plugin.json` URL.

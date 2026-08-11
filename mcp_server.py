@@ -30,12 +30,12 @@ from mcp.types import (
 # Configuration
 # =============================================================================
 
-# Website Intelligence APIs (167.71.22.95) — 10 APIs + payments
-WEBSITE_INTEL_BASE = os.getenv("WEBSITE_INTEL_BASE", "http://167.71.22.95")
+# Website Intelligence APIs — served at https://momentumbysamay.online/api/website-intel
+WEBSITE_INTEL_BASE = os.getenv("WEBSITE_INTEL_BASE", "https://momentumbysamay.online/api/website-intel")
 WEBSITE_INTEL_KEY = os.getenv("WEBSITE_INTEL_KEY", "")
 
-# Marketing API Bundle (64.227.2.61) — 7 APIs + payments
-MARKETING_BUNDLE_BASE = os.getenv("MARKETING_BUNDLE_BASE", "http://64.227.2.61")
+# Marketing API Bundle — served at https://momentumbysamay.online/api/marketing
+MARKETING_BUNDLE_BASE = os.getenv("MARKETING_BUNDLE_BASE", "https://momentumbysamay.online/api/marketing")
 MARKETING_BUNDLE_KEY = os.getenv("MARKETING_BUNDLE_KEY", "")
 
 # Admin keys for self-registration

@@ -1,6 +1,11 @@
 # API Gateway — 17 APIs for AI Agents
 
-**Single MCP server exposing 17 production APIs across two droplets.**
+**Single MCP server exposing 17 production APIs behind one public domain.**
+
+All APIs are served at **`https://momentumbysamay.online/api/<apiname>`** (DNS →
+`167.71.22.95`), a single nginx gateway with Let's Encrypt HTTPS. The
+Website Intelligence bundle runs on droplet 1; Marketing, Web Scraper, PDF and
+Email Verify are reverse-proxied from droplet 2.
 
 ---
 
@@ -29,7 +34,7 @@ An **MCP (Model Context Protocol) server** that wraps **17 real, deployed APIs**
 
 ## 📋 API Inventory — 17 APIs + 3 Payment Tools
 
-### 🖥️ Website Intelligence (167.71.22.95) — 10 APIs
+### 🖥️ Website Intelligence (`/api/website-intel`) — 10 APIs
 
 | # | MCP Tool | API | Description | Price |
 |---|----------|-----|-------------|-------|
@@ -46,7 +51,7 @@ An **MCP (Model Context Protocol) server** that wraps **17 real, deployed APIs**
 
 **Payment:** Solana USDC ($USDC on Solana mainnet)
 
-### 📊 Marketing API Bundle (64.227.2.61) — 7 APIs
+### 📊 Marketing API Bundle (`/api/marketing`) — 7 APIs
 
 | # | MCP Tool | API | Description | Price |
 |---|----------|-----|-------------|-------|
@@ -83,9 +88,9 @@ Configure the MCP server in your agent:
       "command": "python3",
       "args": ["/path/to/mcp_server.py"],
       "env": {
-        "WEBSITE_INTEL_BASE": "http://167.71.22.95",
+        "WEBSITE_INTEL_BASE": "https://momentumbysamay.online/api/website-intel",
         "WEBSITE_INTEL_KEY": "YOUR_WEBSITE_INTEL_KEY",
-        "MARKETING_BUNDLE_BASE": "http://64.227.2.61",
+        "MARKETING_BUNDLE_BASE": "https://momentumbysamay.online/api/marketing",
         "MARKETING_BUNDLE_KEY": "YOUR_MARKETING_KEY"
       }
     }
@@ -98,29 +103,29 @@ Configure the MCP server in your agent:
 **Website Intelligence:**
 ```bash
 # Get an admin key (one-time)
-curl -X POST http://167.71.22.95/api/v1/auth/generate-key \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/auth/generate-key \
   -H "Content-Type: application/json" \
   -d '{"name":"my-app","tier":"admin"}'
 
 # Call an API
-curl -X POST http://167.71.22.95/api/v1/dns-lookup \
-  -H "X-API-Key: YOUR_KEY" \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/dns-lookup \
+  -H "X-API-Key: *** \
   -H "Content-Type: application/json" \
   -d '{"domain": "example.com"}'
 
 # Get pricing
-curl http://167.71.22.95/api/v1/payments/pricing
+curl https://momentumbysamay.online/api/website-intel/api/v1/payments/pricing
 
 # Generate payment invoice
-curl -X POST http://167.71.22.95/api/v1/payments/invoice \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/payments/invoice \
   -H "Content-Type: application/json" \
   -d '{"api_key": "YOUR_KEY", "amount_usdc": 5.0}'
 ```
 
 **Marketing Bundle:**
 ```bash
-curl -X POST http://64.227.2.61/api/v1/contact-extractor \
-  -H "X-API-Key: YOUR_KEY" \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/contact-extractor \
+  -H "X-API-Key: *** \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
 ```
@@ -180,15 +185,15 @@ MCP Client (Claude Code, Cline, Hermes, any MCP agent)
 │  - Pricing/cost display      │
 └──────┬───────────────────────┘
        │
-       ├──→ 167.71.22.95: Website Intelligence (10 APIs + payments)
-       │       POST /api/v1/{endpoint}
-       │       POST /api/v1/payments/{invoice,verify,balance,pricing}
-       │       GET  /.well-known/ai-plugin.json
+       ├──→ momentumbysamay.online/api/website-intel: Website Intelligence (10 APIs + payments)
+       │       POST .../api/website-intel/api/v1/{endpoint}
+       │       POST .../api/website-intel/api/v1/payments/{invoice,verify,balance,pricing}
+       │       GET  .../api/website-intel/.well-known/ai-plugin.json
        │
-       └──→ 64.227.2.61: Marketing API Bundle (7 APIs + payments)
-               POST /api/v1/{endpoint}
-               POST /api/v1/payments/{invoice,verify,balance,pricing}
-               GET  /.well-known/ai-plugin.json
+       └──→ momentumbysamay.online/api/marketing: Marketing API Bundle (7 APIs + payments)
+               POST .../api/marketing/api/v1/{endpoint}
+               POST .../api/marketing/api/v1/payments/{invoice,verify,balance,pricing}
+               GET  .../api/marketing/.well-known/ai-plugin.json
 ```
 
 ---
@@ -208,30 +213,25 @@ Ready-to-use docs for registering on each platform:
 
 Docs: [`docs/setup-wallet.md`](docs/setup-wallet.md)
 
-Both droplets accept Solana USDC (token `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`):
-- `POST /api/v1/payments/invoice` — generate wallet + memo
-- `POST /api/v1/payments/verify` — verify payment → add credits
-- `POST /api/v1/payments/balance` — check balance
-- `GET /api/v1/payments/pricing` — per-endpoint pricing
+Both bundles accept Solana USDC (token `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`):
+- `POST .../api/website-intel/api/v1/payments/invoice` — generate wallet + memo
+- `POST .../api/website-intel/api/v1/payments/verify` — verify payment → add credits
+- `POST .../api/website-intel/api/v1/payments/balance` — check balance
+- `GET .../api/website-intel/api/v1/payments/pricing` — per-endpoint pricing
 
-| Droplet | Current Wallet |
-|---------|---------------|
-| Website Intel | `8x2z3F4G5H6J7K8L9M0N1P2Q3R4S5T6U7V8W9X0Y` (placeholder) |
-| Marketing Bundle | `8x2z3F4REPLACE_WITH_YOUR_REAL_SOLANA_WALLET` (placeholder) |
-
-See [`docs/setup-wallet.md`](docs/setup-wallet.md) to replace with your real Solana wallet.
+**Real Solana treasury wallet on BOTH bundles:** `F8tmJqiyEpcSbAbWef3XhsknsnW4gxb2gv6K8ZxEfgE`
 
 ## 🌐 AI Agent Discovery Endpoints
 
-Both droplets expose AI agent discovery files:
+Each bundle exposes AI agent discovery files under its domain path:
 
 | Endpoint | Description |
 |----------|-------------|
-| `/.well-known/ai-plugin.json` | OpenAI GPT Actions manifest |
-| `/.well-known/openapi.json` | OpenAPI spec for AI consumption |
-| `/api/v1/payments/pricing` | Per-endpoint USDC pricing |
-| `/health` | Health check (no auth) |
-| `/status` | Component status (no auth) |
+| `.../api/<apiname>/.well-known/ai-plugin.json` | OpenAI GPT Actions manifest |
+| `.../api/<apiname>/.well-known/openapi.json` | OpenAPI spec for AI consumption |
+| `.../api/<apiname>/api/v1/payments/pricing` | Per-endpoint USDC pricing |
+| `.../api/<apiname>/health` | Health check (no auth) |
+| `.../api/<apiname>/status` | Component status (no auth) |
 
 ---
 

@@ -2,10 +2,10 @@
 
 **Single MCP server exposing 17 production APIs across two droplets:**
 
-| Droplet | IP | APIs |
-|---------|-----|------|
-| **Website Intelligence** | `167.71.22.95` | 10 APIs |
-| **Marketing Bundle** | `64.227.2.61` | 7 APIs |
+| Bundle | Base URL | APIs |
+|--------|----------|------|
+| **Website Intelligence** | `momentumbysamay.online/api/website-intel` | 10 APIs |
+| **Marketing Bundle** | `momentumbysamay.online/api/marketing` | 7 APIs |
 
 ---
 
@@ -22,9 +22,9 @@ curl -X POST http://DROPLET_IP/api/v1/ENDPOINT \
 
 ---
 
-# 📡 Website Intelligence (167.71.22.95) — 10 APIs
+# 📡 Website Intelligence (`/api/website-intel`) — 10 APIs
 
-All endpoints: `POST http://167.71.22.95/api/v1/{slug}`
+All endpoints: `POST https://momentumbysamay.online/api/website-intel/api/v1/{slug}`
 
 ---
 
@@ -33,13 +33,13 @@ All endpoints: `POST http://167.71.22.95/api/v1/{slug}`
 | Field | Value |
 |-------|-------|
 | **Description** | Convert any web page to clean, structured Markdown. Returns title, description, word count, and full markdown content. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/website-to-markdown` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/website-to-markdown` |
 | **Pricing** | `$0.0005` |
 | **Input Parameters** | `url` (string, required) — Website URL to convert |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/website-to-markdown \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/website-to-markdown \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
@@ -65,13 +65,13 @@ curl -X POST http://167.71.22.95/api/v1/website-to-markdown \
 | Field | Value |
 |-------|-------|
 | **Description** | Extract comprehensive metadata: meta tags, OpenGraph, Twitter Cards, headings (H1–H6), images (with counts/SRSet), canonical URL, language, favicon, structured data, and link analysis. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/website-metadata` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/website-metadata` |
 | **Pricing** | `$0.0002` |
 | **Input Parameters** | `url` (string, required) — Website URL to analyze |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/website-metadata \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/website-metadata \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
@@ -114,13 +114,13 @@ curl -X POST http://167.71.22.95/api/v1/website-metadata \
 | Field | Value |
 |-------|-------|
 | **Description** | Detect the technology stack: CMS, JavaScript frameworks, analytics tools, CDN providers, web servers, and UI libraries. Returns confidence scores per technology. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/technology-detector` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/technology-detector` |
 | **Pricing** | `$0.0003` |
 | **Input Parameters** | `url` (string, required) — Website URL to analyze |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/technology-detector \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/technology-detector \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
@@ -149,13 +149,13 @@ curl -X POST http://167.71.22.95/api/v1/technology-detector \
 | Field | Value |
 |-------|-------|
 | **Description** | Extract all contact information: email addresses, phone numbers, social media links (LinkedIn, Twitter, Facebook, Instagram, YouTube, GitHub), and physical addresses. Supports deep crawling of `/contact`, `/about`, `/team` pages. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/contact-extractor` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/contact-extractor` |
 | **Pricing** | `$0.0005` |
 | **Input Parameters** | `url` (string, required) — Website URL; `deep_crawl` (boolean, optional, default: `false`) — Enable deep crawl for more contacts |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/contact-extractor \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/contact-extractor \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com", "deep_crawl": false}'
@@ -184,13 +184,13 @@ curl -X POST http://167.71.22.95/api/v1/contact-extractor \
 | Field | Value |
 |-------|-------|
 | **Description** | Generate a structured AI-powered summary: company overview, industry classification, key offerings, target audience. Optionally generate an AI narrative with business analysis. Costs more due to LLM inference. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/ai-website-summary` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/ai-website-summary` |
 | **Pricing** | `$0.002` (with AI narrative: `$0.005`) |
 | **Input Parameters** | `url` (string, required) — Website URL; `use_ai` (boolean, optional, default: `false`) — Generate AI-powered narrative summary |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/ai-website-summary \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/ai-website-summary \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com", "use_ai": false}'
@@ -215,13 +215,13 @@ curl -X POST http://167.71.22.95/api/v1/ai-website-summary \
 | Field | Value |
 |-------|-------|
 | **Description** | Extract Open Graph (`og:`) and Twitter Card (`twitter:`) tags. Returns social preview data: title, description, image, URL, site_name, type, and Twitter-specific tags with preview quality analysis. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/opengraph-extractor` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/opengraph-extractor` |
 | **Pricing** | `$0.0002` |
 | **Input Parameters** | `url` (string, required) — Website URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/opengraph-extractor \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/opengraph-extractor \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
@@ -271,13 +271,13 @@ curl -X POST http://167.71.22.95/api/v1/opengraph-extractor \
 | Field | Value |
 |-------|-------|
 | **Description** | Fetch and parse `robots.txt` from any website. Returns crawl rules per user-agent, disallowed/allowed paths, crawl delays, sitemap URLs, and key page accessibility analysis. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/robots-txt-parser` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/robots-txt-parser` |
 | **Pricing** | `$0.0002` |
 | **Input Parameters** | `url` (string, required) — Website URL to fetch `robots.txt` from |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/robots-txt-parser \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/robots-txt-parser \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
@@ -316,13 +316,13 @@ curl -X POST http://167.71.22.95/api/v1/robots-txt-parser \
 | Field | Value |
 |-------|-------|
 | **Description** | Discover and parse XML sitemaps. Supports standard `sitemap.xml`, sitemap index files, and common alternative paths. Returns all URLs with lastmod dates, change frequency, and priority. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/sitemap-parser` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/sitemap-parser` |
 | **Pricing** | `$0.0005` |
 | **Input Parameters** | `url` (string, required) — Website URL to discover sitemaps from |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/sitemap-parser \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/sitemap-parser \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}'
@@ -357,13 +357,13 @@ curl -X POST http://167.71.22.95/api/v1/sitemap-parser \
 | Field | Value |
 |-------|-------|
 | **Description** | Check SSL/TLS certificate details: issuer, subject, validity period, days to expiry, cipher suite, protocol (TLS 1.2/1.3), certificate type, security grade (A+ through F), and SANs. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/ssl-checker` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/ssl-checker` |
 | **Pricing** | `$0.0002` |
 | **Input Parameters** | `domain` (string, required) — Domain name to check SSL for (e.g., `example.com`) |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/ssl-checker \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/ssl-checker \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"domain": "example.com"}'
@@ -413,13 +413,13 @@ curl -X POST http://167.71.22.95/api/v1/ssl-checker \
 | Field | Value |
 |-------|-------|
 | **Description** | Perform comprehensive DNS lookups: A, AAAA, MX (mail servers), NS (name servers), CNAME, TXT records. Also discovers common subdomains (www, mail, blog, api, etc.) and checks DNSSEC status. |
-| **Endpoint** | `POST http://167.71.22.95/api/v1/dns-lookup` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/website-intel/api/v1/dns-lookup` |
 | **Pricing** | `$0.0002` |
 | **Input Parameters** | `domain` (string, required) — Domain name to look up (e.g., `example.com`) |
 
 **Example curl:**
 ```bash
-curl -X POST http://167.71.22.95/api/v1/dns-lookup \
+curl -X POST https://momentumbysamay.online/api/website-intel/api/v1/dns-lookup \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"domain": "example.com"}'
@@ -457,11 +457,11 @@ curl -X POST http://167.71.22.95/api/v1/dns-lookup \
 
 ---
 
-# 📊 Marketing API Bundle (64.227.2.61) — 7 APIs
+# 📊 Marketing API Bundle (`/api/marketing`) — 7 APIs
 
-All endpoints are `POST` under `http://64.227.2.61/marketing/api/v1/{slug}`. The service runs on port 8001 behind an nginx reverse proxy at `/marketing/`.
+All endpoints are `POST` under `https://momentumbysamay.online/api/marketing/api/v1/{slug}`. The service runs on port 8001 behind an nginx reverse proxy at `/marketing/`.
 
-**Batch endpoint:** `POST http://64.227.2.61/marketing/api/v1/batch` — process up to 100 URLs concurrently.
+**Batch endpoint:** `POST https://momentumbysamay.online/api/marketing/api/v1/batch` — process up to 100 URLs concurrently.
 
 ---
 
@@ -470,13 +470,13 @@ All endpoints are `POST` under `http://64.227.2.61/marketing/api/v1/{slug}`. The
 | Field | Value |
 |-------|-------|
 | **Description** | Extract business contact information: email addresses, phone numbers, social media profiles (LinkedIn, Twitter, Facebook, Instagram), and physical address from a business website. Optionally deep-crawls `/contact` and `/about` pages. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/contact-extractor` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/contact-extractor` |
 | **Pricing** | `$0.0005` |
 | **Input Parameters** | `url` (string, required) — Business website URL; `deep_crawl` (boolean, optional, default: `false`) — Deep crawl for more contacts; `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/contact-extractor \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/contact-extractor \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://httpbin.org", "deep_crawl": false}'
@@ -520,13 +520,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/contact-extractor \
 | Field | Value |
 |-------|-------|
 | **Description** | Extract reviews, ratings, and business metadata from Google Maps listings. Search by Place ID or by business name + location. Returns ratings, review counts, top reviews, hours, address, phone, and website. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/google-maps-reviews` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/google-maps-reviews` |
 | **Pricing** | `$0.001` |
 | **Input Parameters** | `place_id` (string, required) — Google Maps Place ID (e.g., `ChIJN1t_tDeuEmsRUsoyG83frY4`); `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/google-maps-reviews \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/google-maps-reviews \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"place_id": "ChIJN1t_tDeuEmsRUsoyG83frY4"}'
@@ -557,13 +557,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/google-maps-reviews \
 | Field | Value |
 |-------|-------|
 | **Description** | Search Google Maps by business name and location. Returns top matching businesses with ratings, addresses, and contact info. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/google-maps-search` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/google-maps-search` |
 | **Pricing** | `$0.001` |
 | **Input Parameters** | `query` (string, required) — Business name or search term; `location` (string, optional) — City, state, or zip code; `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/google-maps-search \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/google-maps-search \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"query": "pizza", "location": "New York"}'
@@ -597,13 +597,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/google-maps-search \
 | Field | Value |
 |-------|-------|
 | **Description** | Extract comprehensive business profile metadata: company name, description, founding year, industry, business hours, payment methods, certifications, awards, team size, social profiles, and contact info. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/business-metadata` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/business-metadata` |
 | **Pricing** | `$0.0003` |
 | **Input Parameters** | `url` (string, required) — Business website URL; `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/business-metadata \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/business-metadata \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://httpbin.org"}'
@@ -655,13 +655,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/business-metadata \
 | Field | Value |
 |-------|-------|
 | **Description** | Run a comprehensive on-page SEO audit: title tag analysis, meta description, heading structure, keyword density, image alt text, internal/external links, schema validation, robots.txt/sitemap check, page speed indicators, and an overall SEO score (0–100) with actionable recommendations. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/seo-audit` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/seo-audit` |
 | **Pricing** | `$0.0005` |
 | **Input Parameters** | `url` (string, required) — Website URL to audit; `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/seo-audit \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/seo-audit \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://httpbin.org"}'
@@ -744,13 +744,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/seo-audit \
 | Field | Value |
 |-------|-------|
 | **Description** | Detect the technology stack: CMS platforms, JavaScript frameworks, analytics tools, advertising networks, CRM systems, CDN providers, and hosting infrastructure. Uses HTML signatures, HTTP headers, and script references. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/technology-detector` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/technology-detector` |
 | **Pricing** | `$0.0003` |
 | **Input Parameters** | `url` (string, required) — Website URL to analyze; `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/technology-detector \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/technology-detector \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://httpbin.org"}'
@@ -782,13 +782,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/technology-detector \
 | Field | Value |
 |-------|-------|
 | **Description** | Check a business's citation presence across 10+ major directories (Google Business Profile, Yelp, YellowPages, BBB, Facebook, Foursquare, SuperPages, MerchantCircle, HotFrog, Citysearch, Manta). Returns NAP (Name, Address, Phone) consistency score, per-directory status, and actionable recommendations. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/citation-checker` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/citation-checker` |
 | **Pricing** | `$0.001` |
 | **Input Parameters** | `url` (string, optional) — Business website URL to extract name from; `business_name` (string, optional) — Business name (if URL not provided); `location` (string, optional) — City/state location; `proxy` (string, optional) — Proxy URL |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/citation-checker \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/citation-checker \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://httpbin.org"}'
@@ -832,13 +832,13 @@ curl -X POST http://64.227.2.61/marketing/api/v1/citation-checker \
 | Field | Value |
 |-------|-------|
 | **Description** | Process multiple URLs concurrently through any compatible API. Run `contact_extractor`, `business_metadata`, `seo_audit`, `technology_detector`, or `company_summary` against up to 100 URLs in a single request. |
-| **Endpoint** | `POST http://64.227.2.61/marketing/api/v1/batch` |
+| **Endpoint** | `POST https://momentumbysamay.online/api/marketing/api/v1/batch` |
 | **Pricing** | `$0.0005` per URL processed |
 | **Input Parameters** | `urls` (array of strings, required, max 100) — URLs to process; `api_type` (string, optional, default: `"contact_extractor"`) — Which API to run; `deep_crawl` (boolean, optional, default: `false`); `use_ai` (boolean, optional, default: `false`); `concurrency` (integer, optional, default: `5`, max: `20`) — Max concurrent requests |
 
 **Example curl:**
 ```bash
-curl -X POST http://64.227.2.61/marketing/api/v1/batch \
+curl -X POST https://momentumbysamay.online/api/marketing/api/v1/batch \
   -H "X-API-Key: YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{

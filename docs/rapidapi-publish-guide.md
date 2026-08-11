@@ -21,7 +21,7 @@ Your OpenAPI specs and listing copy are **ready to upload**. Here's what to do:
 
 1. Upload `openapi.json` as your API specification
 2. Use `README.md` content as the description
-3. Set base URL: `http://167.71.22.95`
+3. Set base URL: `https://momentumbysamay.online/api/website-intel`
 4. Auth: `X-API-Key` header
 5. Pricing: Free (100 req/mo), Basic $19/mo (5k req), Pro $49/mo (25k req)
 
@@ -38,7 +38,7 @@ Your OpenAPI specs and listing copy are **ready to upload**. Here's what to do:
 ```
 
 1. Upload `openapi.json`
-2. Base URL: `http://64.227.2.61/marketing`
+2. Base URL: `https://momentumbysamay.online/api/marketing`
 3. Auth: `X-API-Key` header
 4. Same pricing tiers
 
